@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Estratégia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Simulador de Estratégia</h1>
+        <p>Estratégias para Corrida</p>
+    </header>
+    <main>
+        <form id="formulario">
+            <div>
+                <p>Número de Voltas</p>
+                <input type="number" name="ntxt" id="ntxt"
+                min="1">
+            </div>
+            <div>
+                <p>Escolha o composto inicial</p>
+                <input type="radio" name="pneu" id="macio" required>
+                <label for="macio">Macio</label>
+                <input type="radio" name="pneu" id="medio" required>
+                <label for="medio">Médio</label>
+                <input type="radio" name="pneu" id="duro" required>
+                <label for="duro">Duro</label>
+            </div>
+            <div>
+                <p>Estratégia</p>
+                <input type="radio" name="parada" id="1p" required>
+                <label for="1p">1 Parada</label>
+                <input type="radio" name="parada" id="2p" required>
+                <label for="2p">2 Paradas</label>
+            </div>
+            <div>
+                <input type="submit" value="Simular Estrategia">
+            </div>
+        </form>   
+        
+    </main>
+    <footer>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
