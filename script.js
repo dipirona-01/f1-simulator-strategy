@@ -3,6 +3,23 @@ let formulario = document.getElementById('formulario');
 formulario.addEventListener('submit', function(event) {
     event.preventDefault();
     // Impede o envio do formulário para evitar recarregar a página
+
+    function gerarescolhas() {
+            let escolhastint = document.createElement('div');
+            escolhastint.id = 'escolhapneu'
+
+            let pneuescolhido = document.getElementById('escolhapneu');
+
+            pneuescolhido.textContent = 'Escolha o pneu do Stint'
+
+            
+
+
+
+    }
+    
+
+
     let voltas = document.getElementById('voltas');
     let numeroVoltas = Number(voltas.value);
 
@@ -36,11 +53,34 @@ formulario.addEventListener('submit', function(event) {
     }
 
     let voltasPorStint = Math.floor(corrida.voltas / quantidadeStints)
-    let voltasRestantes = voltasPorStint % quantidadeStints
+    let voltasRestantes = corrida.voltas % quantidadeStints
     let desgasteStint = desgaste * voltasPorStint
+
     
 
+    for (let i = 0; i < quantidadeStints; i++){
 
+        let voltasStint = voltasPorStint;
+        
+
+        if (voltasRestantes > 0){
+            voltasRestantes--
+            voltasStint++
+        }
+
+        let desgasteStint = desgaste * voltasStint
+        
+        console.log(`Stint ${i + 1}: ${voltasStint} voltas`);
+
+        console.log(`Stint ${i + 1}: ${desgasteStint} por voltas`);
+    }
+
+
+    gerarescolhas();
+    
+    
+
+    
     console.log(`${desgasteTotal}`)
     console.log(`${quantidadeStints}`)
     console.log(`${voltasPorStint}`)
