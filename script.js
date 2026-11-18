@@ -4,22 +4,6 @@ formulario.addEventListener('submit', function(event) {
     event.preventDefault();
     // Impede o envio do formulário para evitar recarregar a página
 
-    function gerarescolhas() {
-            let escolhastint = document.createElement('div');
-            escolhastint.id = 'escolhapneu'
-
-            let pneuescolhido = document.getElementById('escolhapneu');
-
-            pneuescolhido.textContent = 'Escolha o pneu do Stint'
-
-            
-
-
-
-    }
-    
-
-
     let voltas = document.getElementById('voltas');
     let numeroVoltas = Number(voltas.value);
 
@@ -74,6 +58,30 @@ formulario.addEventListener('submit', function(event) {
 
         console.log(`Stint ${i + 1}: ${desgasteStint} por voltas`);
     }
+
+    function gerarescolhas() {
+    let escolhastint = document.getElementById('escolhapneu');
+
+    escolhastint.textContent = 'Escolha o pneu do Stint'
+
+    for (let i = 0; i < quantidadeStints; i++) {
+            
+            let escolhaspneus = document.createElement('select')
+            let pneus = ['macio', 'medio', 'duro']
+            for (let j = 0; j < pneus.length; j++){
+                let Opcoes = document.createElement('option')
+                Opcoes.textContent = `${pneus[j]}`
+
+                escolhaspneus.appendChild(Opcoes)
+            }
+
+            escolhaspneus.textContent = `Escolha o pneu do Stint ${i + 1}`
+        
+            escolhastint.appendChild(escolhaspneus); 
+        }
+
+    }
+
 
 
     gerarescolhas();
