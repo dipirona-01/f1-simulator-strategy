@@ -7,9 +7,9 @@ formulario.addEventListener('submit', function(event) {
     let voltas = document.getElementById('voltas');
     let numeroVoltas = Number(voltas.value);
 
-    let pneu = document.querySelector('input[name="pneu"]:checked');
+    let pneu = document.querySelectorAll('input[name="pneu"]');
 
-    let paradas = document.querySelector('input[name="parada"]:checked');
+    let paradas = document.querySelectorAll('input[name="parada"]');
 
     let corrida = {
         voltas: numeroVoltas,
@@ -40,7 +40,7 @@ formulario.addEventListener('submit', function(event) {
     let voltasRestantes = corrida.voltas % quantidadeStints
     let desgasteStint = desgaste * voltasPorStint
 
-    
+    let pneusescolhidos = [escolhaspneus.value]
 
     for (let i = 0; i < quantidadeStints; i++){
 
@@ -66,17 +66,27 @@ formulario.addEventListener('submit', function(event) {
 
     for (let i = 0; i < quantidadeStints; i++) {
             
+            let labelpneu = document.createElement('label')
+
+            labelpneu.textContent = `Escolha o pneu do Stint ${i + 1}`
+
+            escolhastint.appendChild(labelpneu);
+
+
             let escolhaspneus = document.createElement('select')
-            let pneus = ['macio', 'medio', 'duro']
+
+            let pneus = ['Macio', 'Médio', 'Duro']
+
             for (let j = 0; j < pneus.length; j++){
+
                 let Opcoes = document.createElement('option')
+
                 Opcoes.textContent = `${pneus[j]}`
 
                 escolhaspneus.appendChild(Opcoes)
             }
 
-            escolhaspneus.textContent = `Escolha o pneu do Stint ${i + 1}`
-        
+            
             escolhastint.appendChild(escolhaspneus); 
         }
 
