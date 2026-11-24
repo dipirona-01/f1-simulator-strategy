@@ -2,6 +2,8 @@
 let formulario = document.getElementById('formulario');
 formulario.addEventListener('submit', function(event) {
     event.preventDefault();
+    let resultado = document.getElementById('resultado');
+    resultado.textContent = '';
     // Impede o envio do formulário para evitar recarregar a página
 
     // Numero de voltas escolhido
@@ -26,6 +28,12 @@ formulario.addEventListener('submit', function(event) {
         duro: 0.03
     }
 
+    let nomesPneus = {
+        macio: 'Macio',
+        medio: 'Médio',
+        duro: 'Duro'
+    }
+
     // Monitora o que foi escolhido
     let escolhas = document.querySelectorAll('#escolhapneu select');
     let pneusEscolhidos = [];
@@ -33,10 +41,6 @@ formulario.addEventListener('submit', function(event) {
         pneusEscolhidos.push(escolhas[i].value)
 
     }
-
-    let desgaste = desgastePneus[corrida.pneu];
-    let desgasteTotal = desgaste * corrida.voltas
-    
 
 
 
@@ -63,18 +67,21 @@ formulario.addEventListener('submit', function(event) {
         }
 
         let desgasteStint = desgastePneus[pneusEscolhidos[i]] * voltasStint;
+
+        let linhaStint = document.createElement('p')
+
+        linhaStint.textContent = `Stint ${i + 1}: ${nomesPneus[pneusEscolhidos[i]]} - ${voltasStint} voltas - Desgaste: ${desgasteStint.toFixed(2)}`;
+        resultado.appendChild(linhaStint);
         
         console.log(`Stint ${i + 1}: ${voltasStint} voltas`);
 
         console.log(`Stint ${i + 1}: ${desgasteStint} por voltas`);
 
-          console.log(`Desgaste por stint: ${desgasteStint}`)
     }
 
 
 
-    
-    console.log(`${desgasteTotal}`)
+
     console.log(`${quantidadeStints}`)
     console.log(`${voltasPorStint}`)
     console.log(`${voltasRestantes}`)
@@ -96,14 +103,16 @@ function gerarescolhas(quantidadeStints) {
 
             let escolhaspneus = document.createElement('select')
 
-            let pneus = ['Macio', 'Médio', 'Duro']
+
             let valores = ['macio', 'medio', 'duro']
+            let pneus = ['Macio', 'Médio', 'Duro']
+            
 
             for (let j = 0; j < pneus.length; j++){
 
                 let Opcoes = document.createElement('option')
                 Opcoes.value = valores[j]
-                Opcoes.textContent = `${pneus[j]}`
+                Opcoes.textContent = `${pneus[i]}`
 
                 escolhaspneus.appendChild(Opcoes)
             }
