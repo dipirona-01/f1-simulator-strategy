@@ -15,28 +15,33 @@
         <form id="formulario">
             <div>
                 <p>Número de Voltas</p>
-                <input type="number" name="ntxt" id="voltas"
-                min="1" required>
+                <input type="number" name="ntxt" id="voltas" min="1" required class="voltas">
             </div>
-            <div>
+            <div class="escolha">
                 <p>Escolha o composto inicial</p>
-                <input type="radio" name="pneu" id="macio" required>
+                
                 <label for="macio">Macio</label>
-                <input type="radio" name="pneu" id="medio" required>
+                <input type="radio" name="pneu" id="macio" required class="escolha">
+
                 <label for="medio">Médio</label>
-                <input type="radio" name="pneu" id="duro" required>
+                <input type="radio" name="pneu" id="medio" required class="escolha">
+                
                 <label for="duro">Duro</label> 
+                <input type="radio" name="pneu" id="duro" required class="escolha">
+                
             </div>
             <div id="escolhapneu"></div>
-            <div>
+            <div class="escolha">
                 <p>Estratégia</p>
-                <input type="radio" name="parada" id="1p" required>
                 <label for="1p">1 Parada</label>
-                <input type="radio" name="parada" id="2p" required>
+                <input type="radio" name="parada" id="1p" required class="escolha">
+                
                 <label for="2p">2 Paradas</label>
+                <input type="radio" name="parada" id="2p" required class="escolha">
+               
             </div>
             <div>
-                <input type="submit" value="Simular Estrategia">
+                <input type="submit" value="Simular Estrategia" class="submit">
             </div>
         </form>   
         <div id="resultado"></div>
