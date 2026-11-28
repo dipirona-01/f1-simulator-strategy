@@ -31,7 +31,7 @@ form{
     margin-top: 5px;
     padding: 15px;
     background-color: var(--cor-fundo-cartao);
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
     color: var(--texto-secundario);
     display: flex;
     flex-direction: column;
@@ -98,40 +98,61 @@ label.botao {
     text-align: center;
 }
 
-/* Botões dos pneus */
-input[name="pneu"] {
-    appearance: none;
-}
-
-
-input[name="pneu"] + label {
-    display: inline-block;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 1px solid var(--texto-secundario);
-}
-
-/* Pneu macio */
-#macio:checked + label {
-    background-color: #D71920;
+[id="1p"]:checked + label {
+    background-color: var(--vermelho);
     color: white;
 }
 
-/* Pneu médio */
-#medio:checked + label {
-    background-color: #E6C443;
-    color: #080B10;
-}
-
-/* Pneu duro */
-#duro:checked + label {
-    background-color: #FFFFFF;
-    color: #080B10;
-}
-
-
-:checked + label {
+[id="2p"]:checked + label {
     background-color: var(--vermelho);
+    color: white;
+}
+
+#resultado {
+    width: 60%;
+    margin:auto;
+    padding: 15px;
+    background-color: var(--cor-fundo-cartao);
+    border-radius:  0px 0px 10px 10px;
+    color: var(--texto);
+}
+
+#resultado p {
+    background-color: var(--campo);
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    color: var(--texto-secundario);
+}
+
+.label-pneu {
+    color: white;
+    display: flex;
+    margin: 5px 0;
+    border: 1px solid var(--vermelho);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.selecao-pneu {
+    background-color: var(--campo);
+    color: var(--texto);
+    padding: 8px;
+    border: 1px solid var(--texto-secundario);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 250px;
+}
+
+@media (max-width: 768px) {
+    form,
+    #resultado {
+        width: 95%;
+    }
+
+    label.botao {
+        width: 100px;
+        margin: 4px 2px;
+    }
 }

@@ -3,22 +3,18 @@ let formulario = document.getElementById('formulario');
 formulario.addEventListener('submit', function(event) {
     event.preventDefault();
     let resultado = document.getElementById('resultado');
-    resultado.textContent = '';
+
     // Impede o envio do formulário para evitar recarregar a página
 
     // Numero de voltas escolhido
     let voltas = document.getElementById('voltas');
     let numeroVoltas = Number(voltas.value);
 
-    // Escolhe o pneu
-    let pneu = document.querySelector('input[name="pneu"]:checked');
-
     // Botões de estrategia
     let paradaSelecionada = document.querySelector('input[name="parada"]:checked');
 
     let corrida = {
         voltas: numeroVoltas,
-        pneu: pneu.id,
         paradas: paradaSelecionada.id
     };
 
@@ -51,6 +47,16 @@ formulario.addEventListener('submit', function(event) {
         quantidadeStints = 3
     }
 
+    if (corrida.voltas < quantidadeStints) {
+        alert('O número de voltas precisa ser maior ou igual à quantidade de stints.');
+        return;
+        }
+        
+    let resumo = document.createElement('h2');
+
+    resumo.textContent = `Resumo da corrida: ${corrida.voltas} voltas | ${quantidadeStints - 1} paradas`;
+
+    resultado.appendChild(resumo);
     let voltasPorStint = Math.floor(corrida.voltas / quantidadeStints)
     let voltasRestantes = corrida.voltas % quantidadeStints
 
@@ -72,19 +78,8 @@ formulario.addEventListener('submit', function(event) {
 
         linhaStint.textContent = `Stint ${i + 1}: ${nomesPneus[pneusEscolhidos[i]]} - ${voltasStint} voltas - Desgaste: ${desgasteStint.toFixed(2)}`;
         resultado.appendChild(linhaStint);
-        
-        console.log(`Stint ${i + 1}: ${voltasStint} voltas`);
-
-        console.log(`Stint ${i + 1}: ${desgasteStint} por voltas`);
 
     }
-
-
-
-
-    console.log(`${quantidadeStints}`)
-    console.log(`${voltasPorStint}`)
-    console.log(`${voltasRestantes}`)
 });
 
 function gerarescolhas(quantidadeStints) {
@@ -98,11 +93,25 @@ function gerarescolhas(quantidadeStints) {
 
             labelpneu.textContent = `Escolha o pneu do Stint ${i + 1}`
 
+            labelpneu.classList.add('label-pneu');
+
             escolhastint.appendChild(labelpneu);
 
 
             let escolhaspneus = document.createElement('select')
+            escolhaspneus.required = true;
 
+            escolhaspneus.classList.add('selecao-pneu');
+
+            let opcaoInicial = document.createElement('option');
+            opcaoInicial.value = '';
+            opcaoInicial.textContent = 'Selecione um pneu';
+            opcaoInicial.disabled = true;
+            opcaoInicial.selected = true;
+
+            escolhaspneus.appendChild(opcaoInicial);
+
+            
 
             let valores = ['macio', 'medio', 'duro']
             let pneus = ['Macio', 'Médio', 'Duro']
@@ -112,13 +121,14 @@ function gerarescolhas(quantidadeStints) {
 
                 let Opcoes = document.createElement('option')
                 Opcoes.value = valores[j]
-                Opcoes.textContent = `${pneus[i]}`
+                Opcoes.textContent = `${pneus[j]}`
 
                 escolhaspneus.appendChild(Opcoes)
             }
-
+            
             
             escolhastint.appendChild(escolhaspneus); 
+
         }
 
     }
@@ -136,7 +146,6 @@ for (let i = 0; i < paradas.length; i++) {
         } else {
             quantidadeStints = 3
         }
-
 
         gerarescolhas(quantidadeStints);
     });
